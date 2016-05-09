@@ -42,7 +42,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.apiURL = 'http://itp405-music-match-api.herokuapp.com';
+    ENV.apiNamespace = 'api/v1';
   }
 
   return ENV;
