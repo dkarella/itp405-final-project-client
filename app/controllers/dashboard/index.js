@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'music-match/config/environment';
 
 export default Ember.Controller.extend({
   token: null,
@@ -21,7 +22,7 @@ export default Ember.Controller.extend({
         this.set('newInstrument', '');
         var token = this.get('token');
         var me = this.get('me');
-        $.post('http://localhost:3000/api/v1/me/tag', {
+        $.post(`${ENV.apiURL}/${ENV.apiNamespace}/me/tag`, {
           token: token,
           type: type,
           value: tag
@@ -39,7 +40,7 @@ export default Ember.Controller.extend({
         this.set('newGenre', '');
         var token = this.get('token');
         var me = this.get('me');
-        $.post('http://localhost:3000/api/v1/me/tag', {
+        $.post(`${ENV.apiURL}/${ENV.apiNamespace}/me/tag`, {
           token: token,
           type: type,
           value: tag
@@ -60,7 +61,7 @@ export default Ember.Controller.extend({
       var self = this;
 
       $.ajax({
-        url: `http://localhost:3000/api/v1/me/tag/${tag.id}`,
+        url: `${ENV.apiURL}/${ENV.apiNamespace}/me/tag/${tag.id}`,
         type: 'DELETE',
         headers: {
           token: token
@@ -84,7 +85,7 @@ export default Ember.Controller.extend({
       var self = this;
 
       $.ajax({
-        url: `http://localhost:3000/api/v1/me/music/${music.id}`,
+        url: `${ENV.apiURL}/${ENV.apiNamespace}/me/music/${music.id}`,
         type: 'DELETE',
         headers: {
           token: token

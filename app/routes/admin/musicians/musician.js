@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'music-match/config/environment';
 
 export default Ember.Route.extend({
   session: Ember.inject.service(),
@@ -10,7 +11,7 @@ export default Ember.Route.extend({
       var token = this.get('session.token');
       var self = this;
       $.ajax({
-        url: `http://localhost:3000/api/v1/admin/musician-tag/${musicianId}/${tagId}`,
+        url: `${ENV.apiURL}/${ENV.apiNamespace}/admin/musician-tag/${musicianId}/${tagId}`,
         type: 'DELETE',
         headers: {
           token: token
@@ -26,7 +27,7 @@ export default Ember.Route.extend({
       var token = this.get('session.token');
       var self = this;
       $.ajax({
-        url: `http://localhost:3000/api/v1/admin/music/${musicId}`,
+        url: `${ENV.apiURL}/${ENV.apiNamespace}/admin/music/${musicId}`,
         type: 'DELETE',
         headers: {
           token: token

@@ -1,13 +1,14 @@
 import Ember from 'ember';
+import ENV from 'music-match/config/environment';
 
 export default Ember.Service.extend({
   token: localStorage['token'] || '',
   fetchCurrentMusician(){
     var token = this.get('token');
-    return $.get('http://localhost:3000/api/v1/me', {token: token});
+    return $.get(`${ENV.apiURL}/${ENV.apiNamespace}/me`, {token: token});
   },
   requestToken(username, password){
-    return $.post('http://localhost:3000/api/v1/request_token', {username: username, password: password}, 'json')
+    return $.post(`${ENV.apiURL}/${ENV.apiNamespace}/request_token`, {username: username, password: password}, 'json')
       .done((res) => {
         // success
         // set token in local storage
@@ -19,7 +20,7 @@ export default Ember.Service.extend({
       });
   },
   register(username, password, first_name, last_name){
-    return $.post('http://localhost:3000/api/v1/register',
+    return $.post(`${ENV.apiURL}/${ENV.apiNamespace}/register`,
       {
         username: username,
         password: password,
@@ -47,7 +48,7 @@ export default Ember.Service.extend({
     var token = this.get('token');
     var self = this;
 
-    return $.post('http://localhost:3000/api/v1/validate_token', {token: token}).then(
+    return $.post(`${ENV.apiURL}/${ENV.apiNamespace}/validate_token`, {token: token}).then(
       function(){
         // if successul don't do anything
       },
@@ -59,10 +60,9 @@ export default Ember.Service.extend({
       });
   },
 
-  isAdmin(router){
+  isAdmin(){
     var token = this.get('token');
-    var self = this;
 
-    return $.post('http://localhost:3000/api/v1/admin/validate', {token: token});
+    return $.post(`${ENV.apiURL}/${ENV.apiNamespace}/admin/validate`, {token: token});
   }
 });
