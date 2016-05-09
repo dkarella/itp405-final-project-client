@@ -1,0 +1,27 @@
+<div class="profile-droplet">
+  <button class="btn btn-default" {{action 'show'}}>Upload</button>
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Upload a .mp3 file</h4>
+        </div>
+        <div class="modal-body">
+          {{#droplet-area}}
+            {{#if uploadStatus.error}}
+                <div class="error">An error occurred during the upload process. Please try again later.</div>
+            {{/if}}
+            {{input value=musicTitle placeholder="title" class="form-control"}}
+            <br>
+            {{droplet-input class="center-block"}}
+        {{/droplet-area}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" {{action 'upload'}}>Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

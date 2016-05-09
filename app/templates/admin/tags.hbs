@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="text-center">Tags</h2>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Value</th>
+          <th>type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |tag|}}
+          <tr>
+            <td>{{tag.id}}</td>
+            <td>{{tag.value}}</td>
+            <td>{{tag.typeString}}</td>
+            <td>
+              {{#link-to 'admin.tags.tag' tag.id tagName="button" class="btn btn-primary"}}
+                Musicians
+              {{/link-to}}
+              <button {{action 'remove' tag.id}} class="btn btn-danger">Remove</button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{outlet}}

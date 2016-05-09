@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="text-center">Results for: {{q}}</h1>
+  <hr>
+  <ul>
+    {{#each model as |musician|}}
+      {{musician-search-item musician=musician}}
+      <hr>
+    {{/each}}
+  </ul>
+</div>

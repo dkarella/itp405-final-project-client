@@ -1,0 +1,75 @@
+<div class="container">
+  <h2 class="text-center">Details for: {{model.firstName}} {{model.lastName}} (id: {{model.id}})</h2>
+  <hr>
+  <div class="col-md-6">
+    <h3 class="text-center">Tags</h3>
+    <hr>
+    {{#if model.tags}}
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Value</th>
+              <th>Tag Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.tags as |tag|}}
+              <tr>
+                <td>{{tag.id}}</td>
+                <td>{{tag.value}}</td>
+                <td>{{tag.type}}</td>
+                <td>
+                  {{#link-to 'admin.tags.tag' tag.id tagName="button" class="btn btn-primary"}}
+                    All Musicians
+                  {{/link-to}}
+                  <button {{action 'removeMusicianTag' model.id tag.id }} class="btn btn-danger">Remove Association</button>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      {{else}}
+      <p class="text-center">
+          This musician doesn't have any tags!
+      </p>
+    {{/if}}
+  </div>
+  <div class="col-md-6">
+    <h3 class="text-center">Music</h3>
+    <hr>
+    {{#if model.music}}
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Link</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.music_processed as |music|}}
+              <tr>
+                <td>{{music.id}}</td>
+                <td>{{music.title}}</td>
+                <td><a href={{music.path}}>link</a></td>
+                <td>
+                  <button {{action 'removeMusic' music.id}} class="btn btn-danger">Remove</button>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      {{else}}
+      <p class="text-center">
+          This musician doesn't have any tags!
+      </p>
+    {{/if}}
+  </div>
+</div>

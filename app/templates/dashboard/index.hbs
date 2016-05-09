@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="musician-info text-center">
+    {{#if profilePictureURL}}
+      {{profile-droplet token=token src=profilePictureURL}}
+    {{else}}
+      {{profile-droplet token=token src="http://placehold.it/150x150"}}
+    {{/if}}
+    <h1>{{me.firstName}} {{me.lastName}}</h1>
+    <hr>
+  </div>
+  <div class="col-md-3 text-center">
+    <h3>Instruments</h3>
+    <form class="form-horizontal" {{action 'addTag' 0 on="submit"}}>
+      <div class="input-group">
+        {{input type="text" class="form-control" placeholder="i.e. saxophone, piano, guitar" value=newInstrument}}
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Add</button>
+        </span>
+      </div>
+    </form>
+    <hr>
+    {{#if instruments }}
+        {{#each instruments as |instrument|}}
+        <div class="row">
+          <div class="col-xs-6">
+            <h5>{{instrument.value}}</h5>
+          </div>
+          <div class="col-xs-6">
+            <button {{action 'removeTag' instrument}} class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+        <hr>
+        {{/each}}
+    {{else}}
+      Let people know what instruments you play!
+    {{/if}}
+  </div>
+
+  <div class="col-md-3 text-center">
+    <h3>Genres</h3>
+    <form class="form-horizontal" {{action 'addTag' 1 on="submit"}}>
+      <div class="input-group">
+        {{input type="text" class="form-control" placeholder="i.e. classical, rock, jazz" value=newGenre}}
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Add</button>
+        </span>
+      </div>
+    </form>
+    <hr>
+    {{#if genres }}
+        {{#each genres as |genre|}}
+          <div class="row">
+            <div class="col-xs-6">
+              <h5>{{genre.value}}</h5>
+            </div>
+            <div class="col-xs-6">
+              <button {{action 'removeTag' genre}} class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+          <hr>
+        {{/each}}
+    {{else}}
+      Let people know what genres you're interested in!
+    {{/if}}
+  </div>
+
+  <div class="col-md-6 text-center">
+    <h3>Music</h3>
+    {{music-droplet token=token}}
+    <hr>
+    {{#if music}}
+      {{#each music as |m|}}
+        <div class="row">
+          <div class="col-md-8">
+            {{music-item music=m}}
+          </div>
+          <div class="col-md-4">
+            <button {{action 'removeMusic' m}} class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+        <hr>
+      {{/each}}
+    {{else}}
+      <p>
+        You don't have any music!
+      </p>
+    {{/if}}
+  </div>
+</div>

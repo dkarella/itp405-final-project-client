@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="musician-info text-center">
+    {{#if musician.profilePictureURL}}
+      <img src={{musician.profilePictureURL}} class="musician-picture img-circle" alt="profile-picture" />
+    {{else}}
+      <img src="http://placehold.it/150x150" class="img-circle" alt="alternative-profile-picture" />
+    {{/if}}
+    <h1>{{musician.firstName}} {{musician.lastName}}</h1>
+    <hr>
+  </div>
+  <div class="col-md-4 text-center">
+    <h3>Instruments</h3>
+    <hr>
+    {{#if musician.instruments }}
+      <ul>
+        {{#each musician.instruments as |instrument|}}
+          <li>{{instrument.value}}</li>
+        {{/each}}
+      </ul>
+    {{else}}
+      {{musician.firstName}} hasn't added any instruments, yet!
+    {{/if}}
+  </div>
+
+  <div class="col-md-4 text-center">
+    <h3>Genres</h3>
+    <hr>
+    {{#if musician.genres }}
+      <ul>
+        {{#each musician.genres as |genre|}}
+          <li>{{genre.value}}</li>
+        {{/each}}
+      </ul>
+    {{else}}
+      {{musician.firstName}} hasn't added any genres, yet!
+    {{/if}}
+  </div>
+
+  <div class="col-md-4 text-center">
+    <h3>Music</h3>
+    <hr>
+    {{#if musician.music_processed}}
+      <ul>
+        {{#each musician.music_processed as |m|}}
+          {{music-item music=m}}
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>
+        {{musician.firstName}} hasn't uploaded any music, yet!
+      </p>
+    {{/if}}
+  </div>
+</div>

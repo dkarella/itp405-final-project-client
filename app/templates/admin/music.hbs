@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="text-center">Music</h2>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Musician Id</th>
+          <th>Musician Name</th>
+          <th>URL</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |music|}}
+          <tr>
+            <td>{{music.id}}</td>
+            <td>{{music.title}}</td>
+            <td>{{music.musicianId}}</td>
+            <td>{{music.musician.firstName}} {{music.musician.lastName}}</td>
+            <td><a href={{music.url}}>{{music.url}}</a></td>
+            <td>
+              {{#link-to 'admin.musicians.musician' music.musicianId class="btn btn-primary"}}Musician{{/link-to}}
+              <button {{action 'remove' music.id}} class="btn btn-danger">Remove</button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

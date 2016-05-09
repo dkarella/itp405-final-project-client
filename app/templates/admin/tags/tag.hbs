@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 class="text-center">Musicians for tag: {{model.id}} ({{model.value}})</h2>
+  <hr>
+    <h3 class="text-center">Tags</h3>
+    <hr>
+    {{#if model.musicians}}
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.musicians as |musician|}}
+              <tr>
+                <td>{{musician.id}}</td>
+                <td>{{musician.firstName}}</td>
+                <td>{{musician.lastName}}</td>
+                <td>
+                  {{#link-to 'admin.musicians.musician' musician.id tagName="button" class="btn btn-primary"}}
+                    Details
+                  {{/link-to}}
+                  <button {{action 'removeMusicianTag' model.id musician.id }} class="btn btn-danger">Remove Association</button>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      {{else}}
+      <p class="text-center">
+          This tag doesn't have any musicians!
+      </p>
+    {{/if}}
+</div>

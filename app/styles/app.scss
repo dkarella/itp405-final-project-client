@@ -1,0 +1,72 @@
+@import "bootstrap";
+
+
+#navbar {
+  margin-bottom: 65px;
+}
+
+.profile-preview {
+  width: 100px;
+  height: 100px
+}
+
+li {
+  list-style: none;
+}
+
+.musician-picture {
+  width: 150px;
+  height: 150px;
+}
+
+.profile-picture {
+  position: relative;
+  border-radius: 50%;
+  width: 150px;
+  height:150px;
+
+  &:hover{
+    & img {
+      opacity: 0.6;
+    }
+
+    & h5 {
+      visibility: visible;;
+    }
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+  }
+
+  h5 {
+    visibility: hidden;
+    color: white;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    cursor: default;
+  }
+}
+
+.admin-nav-item{
+  border: solid black 1px;
+  background-color: #f1f0f4;
+  &:hover {
+    background-color: gray;
+  }
+}
+
+.music-search-item {
+  &:hover {
+    background-color: #f1f0f4;
+  }
+}
+
+@media (min-width: 992px) {
+  .admin-nav-item {
+    margin-top: -20px;
+  }
+}

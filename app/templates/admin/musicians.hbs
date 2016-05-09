@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 class="text-center">Musicians</h2>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>First name</th>
+          <th>Last Name</th>
+          <th>Profile Picture URL</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |musician|}}
+          <tr>
+            <td>{{musician.id}}</td>
+            <td>{{musician.firstName}}</td>
+            <td>{{musician.lastName}}</td>
+            <td><a href={{musician.profilePictureURL}}>{{musician.profilePictureURL}}</a></td>
+            <td>
+              {{#link-to 'admin.musicians.musician' musician.id  tagName="button" class="btn btn-primary"}}
+                Details
+              {{/link-to}}
+              <button {{action 'remove' musician.id}} class="btn btn-danger">Remove</button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{outlet}}
