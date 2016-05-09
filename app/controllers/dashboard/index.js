@@ -8,10 +8,12 @@ export default Ember.Controller.extend({
   instruments: [],
   genres: [],
   music: [],
+  errors: [],
   actions: {
     addTag(type){
       var genres = this.get('genres');
       var instruments = this.get('instruments');
+      var self = this;
 
       // Type 0 corresponds to an instrument
       if(type === 0){
@@ -28,7 +30,7 @@ export default Ember.Controller.extend({
             instruments.pushObject(res.newTag);
           },
           function(){
-            // TODO: Display error
+            self.set('errors', ['Failed to add instrument, must be between 3 and 45 characters']);
           });
       }
       // Type 1 corresponds to a genre
@@ -46,7 +48,7 @@ export default Ember.Controller.extend({
             genres.pushObject(res.newTag);
           },
           function(){
-            // TODO: Display error
+            self.set('errors', ['Failed to add genre, must be between 3 and 45 characters']);
           });
       }
     },
@@ -55,6 +57,7 @@ export default Ember.Controller.extend({
       var genres = this.get('genres');
       var instruments = this.get('instruments');
       var token = this.get('token');
+      var self = this;
 
       $.ajax({
         url: `http://localhost:3000/api/v1/me/tag/${tag.id}`,
@@ -68,6 +71,9 @@ export default Ember.Controller.extend({
           } else if (tag.type === 1){
             genres.removeObject(tag);
           }
+        },
+        error: function(){
+          self.set('errors', ['Failed to delete tag']);
         }
       });
     },
@@ -75,6 +81,7 @@ export default Ember.Controller.extend({
     removeMusic(music){
       var musicArray = this.get('music');
       var token = this.get('token');
+      var self = this;
 
       $.ajax({
         url: `http://localhost:3000/api/v1/me/music/${music.id}`,
@@ -84,6 +91,9 @@ export default Ember.Controller.extend({
         },
         success: function(){
           musicArray.removeObject(music);
+        },
+        error: function(){
+          self.set('errors', ['Failed to delete music']);
         }
       });
     },

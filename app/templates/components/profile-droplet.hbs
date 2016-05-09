@@ -14,7 +14,7 @@
           {{#droplet-area}}
 
             {{#if uploadStatus.error}}
-                <div class="error">An error occurred during the upload process. Please try again later.</div>
+                <div style="color: red;" class="error">An error occurred during the upload process. Please try again later.</div>
             {{/if}}
 
             {{#each validFiles as |file|}}
